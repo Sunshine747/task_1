@@ -6,5 +6,7 @@ class FirstProgram {
         Point p2 = new Point(5, -8);
 
         System.out.println(p1.distance(p1, p2));
+
+        System.out.println(p1.distance(p2));
     }
 }
