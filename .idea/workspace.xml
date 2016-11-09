@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="281593fd-df91-436f-9c77-c8042d4fd6fb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="281593fd-df91-436f-9c77-c8042d4fd6fb" name="Default" comment="" />
     <ignored path="task_1.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -55,9 +50,19 @@
       <file leaf-file-name="GroupCreationTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../addressbook-web-tests/src/test/java/ru/stqa/addressbook/GroupCreationTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-556">
-              <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
-              <folding />
+            <state relative-caret-position="1207">
+              <caret line="71" column="3" selection-start-line="71" selection-start-column="3" selection-end-line="71" selection-end-column="3" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1376#1377#0" expanded="true" />
+                <element signature="e#1435#1436#0" expanded="true" />
+                <element signature="e#1475#1476#0" expanded="true" />
+                <element signature="e#1526#1527#0" expanded="true" />
+                <element signature="e#2134#2135#0" expanded="true" />
+                <element signature="e#2182#2183#0" expanded="true" />
+                <element signature="e#2216#2217#0" expanded="true" />
+                <element signature="e#2271#2272#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -635,8 +640,8 @@
         <option value="$PROJECT_DIR$/sandbox/src/main/java/FirstProgram.java" />
         <option value="$PROJECT_DIR$/sandbox/src/test/java/PointTests2.java" />
         <option value="$PROJECT_DIR$/sandbox/src/test/java/PointTests.java" />
-        <option value="$PROJECT_DIR$/../../addressbook-web-tests/src/test/java/ru/stqa/addressbook/GroupCreationTest.java" />
         <option value="$PROJECT_DIR$/../../addressbook-web-tests/build.gradle" />
+        <option value="$PROJECT_DIR$/../../addressbook-web-tests/src/test/java/ru/stqa/addressbook/GroupCreationTest.java" />
       </list>
     </option>
   </component>
@@ -773,8 +778,9 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../addressbook-web-tests/build.gradle" />
-    <property name="settings.editor.selected.configurable" value="vcs.TFS" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="settings.editor.splitter.proportion" value="0.23959391" />
+    <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RunManager" selected="TestNG.GroupCreationTest">
     <configuration default="false" name="FirstProgram" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -1314,7 +1320,7 @@
       <workItem from="1477944973406" duration="1972000" />
       <workItem from="1478119430442" duration="7686000" />
       <workItem from="1478440006282" duration="868000" />
-      <workItem from="1478717695225" duration="3905000" />
+      <workItem from="1478717695225" duration="5548000" />
     </task>
     <servers />
   </component>
@@ -1328,11 +1334,11 @@
     <history-entry file="GroupCreationTest - 2016.11.09 at 23h 20m 22s.xml">
       <configuration name="GroupCreationTest" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="PointTests - 2016.11.06 at 18h 08m 36s.xml">
-      <configuration name="PointTests" configurationId="TestNG" />
+    <history-entry file="GroupCreationTest - 2016.11.10 at 00h 44m 29s.xml">
+      <configuration name="GroupCreationTest" configurationId="TestNG" />
     </history-entry>
-    <history-entry file="PointTests - 2016.11.06 at 18h 15m 12s.xml">
-      <configuration name="PointTests" configurationId="TestNG" />
+    <history-entry file="GroupCreationTest - 2016.11.10 at 01h 08m 33s.xml">
+      <configuration name="GroupCreationTest" configurationId="TestNG" />
     </history-entry>
     <history-entry file="PointTests - 2016.11.06 at 18h 18m 47s.xml">
       <configuration name="PointTests" configurationId="TestNG" />
@@ -1351,7 +1357,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21271000" />
+    <option name="totallyTimeSpent" value="22914000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1633,9 +1639,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../addressbook-web-tests/src/test/java/ru/stqa/addressbook/GroupCreationTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-556">
-          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
-          <folding />
+        <state relative-caret-position="1207">
+          <caret line="71" column="3" selection-start-line="71" selection-start-column="3" selection-end-line="71" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1376#1377#0" expanded="true" />
+            <element signature="e#1435#1436#0" expanded="true" />
+            <element signature="e#1475#1476#0" expanded="true" />
+            <element signature="e#1526#1527#0" expanded="true" />
+            <element signature="e#2134#2135#0" expanded="true" />
+            <element signature="e#2182#2183#0" expanded="true" />
+            <element signature="e#2216#2217#0" expanded="true" />
+            <element signature="e#2271#2272#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
