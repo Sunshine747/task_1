@@ -25,11 +25,11 @@ public class ContactCreationTest {
   public void setUp() throws Exception {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+    wd.get("http://www.addressbook.ru/");
+    authorisation();
   }
 
-  @Test
-  public void ContactCreationTest() {
-    wd.get("http://www.addressbook.ru/");
+  private void authorisation() {
     wd.findElement(By.name("user")).click();
     wd.findElement(By.name("user")).clear();
     wd.findElement(By.name("user")).sendKeys("admin");
@@ -37,7 +37,26 @@ public class ContactCreationTest {
     wd.findElement(By.name("pass")).clear();
     wd.findElement(By.name("pass")).sendKeys("secret");
     wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
-    wd.findElement(By.linkText("add new")).click();
+  }
+
+  @Test
+  public void ContactCreationTest() {
+
+    goToAddNewContact();
+    fillContactTextField();
+    submintAddNewContact();
+    returnToHomePage();
+  }
+
+  private void returnToHomePage() {
+    wd.findElement(By.linkText("home page")).click();
+  }
+
+  private void submintAddNewContact() {
+    wd.findElement(By.name("submit")).click();
+  }
+
+  private void fillContactTextField() {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys("contact_first_name");
@@ -65,8 +84,10 @@ public class ContactCreationTest {
     wd.findElement(By.name("mobile")).click();
     wd.findElement(By.name("mobile")).clear();
     wd.findElement(By.name("mobile")).sendKeys("mobile_phone_number");
-    wd.findElement(By.name("submit")).click();
-    wd.findElement(By.id("content")).click();
+  }
+
+  private void goToAddNewContact() {
+    wd.findElement(By.linkText("add new")).click();
   }
 
   @AfterMethod
