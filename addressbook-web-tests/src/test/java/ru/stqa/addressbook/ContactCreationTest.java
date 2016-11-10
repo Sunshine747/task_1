@@ -26,24 +26,24 @@ public class ContactCreationTest {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://www.addressbook.ru/");
-    authorisation();
+    authorisation("admin", "secret");
   }
 
-  private void authorisation() {
+  private void authorisation(String username, String pass) {
     wd.findElement(By.name("user")).click();
     wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys("admin");
+    wd.findElement(By.name("user")).sendKeys(username);
     wd.findElement(By.name("pass")).click();
     wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys("secret");
+    wd.findElement(By.name("pass")).sendKeys(pass);
     wd.findElement(By.xpath("//form[@id='LoginForm']/input[3]")).click();
   }
 
   @Test
-  public void ContactCreationTest() {
+  public void testContactCreation() {
 
     goToAddNewContact();
-    fillContactTextField();
+    fillContactTextField("contact_first_name", "contact_middle_name", "contact_last_name", "nickname", "title", "company", "address", "home_phone_number", "mobile_phone_number");
     submintAddNewContact();
     returnToHomePage();
   }
@@ -56,34 +56,34 @@ public class ContactCreationTest {
     wd.findElement(By.name("submit")).click();
   }
 
-  private void fillContactTextField() {
+  private void fillContactTextField(String firstName, String middleName, String lastName, String nickname, String title, String company, String address, String homePhoneNumber, String mobilePhoneNumber) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys("contact_first_name");
+    wd.findElement(By.name("firstname")).sendKeys(firstName);
     wd.findElement(By.name("middlename")).click();
     wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys("contact_middle_name");
+    wd.findElement(By.name("middlename")).sendKeys(middleName);
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys("contact_last_name");
+    wd.findElement(By.name("lastname")).sendKeys(lastName);
     wd.findElement(By.name("nickname")).click();
     wd.findElement(By.name("nickname")).clear();
-    wd.findElement(By.name("nickname")).sendKeys("nickname");
+    wd.findElement(By.name("nickname")).sendKeys(nickname);
     wd.findElement(By.name("title")).click();
     wd.findElement(By.name("title")).clear();
-    wd.findElement(By.name("title")).sendKeys("title");
+    wd.findElement(By.name("title")).sendKeys(title);
     wd.findElement(By.name("company")).click();
     wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys("company");
+    wd.findElement(By.name("company")).sendKeys(company);
     wd.findElement(By.name("address")).click();
     wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys("address");
+    wd.findElement(By.name("address")).sendKeys(address);
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys("home_phone_number");
+    wd.findElement(By.name("home")).sendKeys(homePhoneNumber);
     wd.findElement(By.name("mobile")).click();
     wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys("mobile_phone_number");
+    wd.findElement(By.name("mobile")).sendKeys(mobilePhoneNumber);
   }
 
   private void goToAddNewContact() {
