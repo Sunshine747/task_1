@@ -44,4 +44,12 @@ super(wd);
   public void submitContactModification() {
     click(By.name("update"));
   }
+
+  public void initContactDeletion() {
+    click(By.xpath("//*[@id=\"content\"]/form[2]/div[2]/input"));
+  }
+
+  public void confirmContactDeletion() {
+    wd.switchTo().alert().accept();
+  }
 }
