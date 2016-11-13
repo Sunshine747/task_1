@@ -19,4 +19,8 @@ public class NavigationHelper extends BaseHelper {
   public void goToAddNewContact() {
     click(By.linkText("add new"));
   }
+
+  public void goToHomePage() {
+    click(By.xpath("//*[@id=\"nav\"]/ul/li[1]/a"));
+  }
 }

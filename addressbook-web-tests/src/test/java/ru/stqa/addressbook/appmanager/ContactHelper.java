@@ -32,4 +32,16 @@ super(wd);
     type(By.name("home"), contactData.getHomePhoneNumber());
     type(By.name("mobile"), contactData.getMobilePhoneNumber());
   }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
+  public void initContactModification() {
+    click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[3]/td[8]/a/img"));
+  }
+
+  public void submitContactModification() {
+    click(By.name("update"));
+  }
 }
