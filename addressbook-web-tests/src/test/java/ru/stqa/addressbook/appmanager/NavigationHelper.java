@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * Created by Администратор on 13.11.2016.
  */
-public class NavigationHelper extends HelperBase{
+public class NavigationHelper extends BaseHelper {
 
   public NavigationHelper(FirefoxDriver wd) {
     super(wd);

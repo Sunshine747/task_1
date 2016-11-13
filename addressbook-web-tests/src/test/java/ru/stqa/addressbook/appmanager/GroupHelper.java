@@ -7,7 +7,7 @@ import ru.stqa.addressbook.model.GroupData;
 /**
  * Created by Администратор on 13.11.2016.
  */
-public class GroupHelper extends HelperBase {
+public class GroupHelper extends BaseHelper {
 
   public GroupHelper(FirefoxDriver wd) {
     super(wd);
