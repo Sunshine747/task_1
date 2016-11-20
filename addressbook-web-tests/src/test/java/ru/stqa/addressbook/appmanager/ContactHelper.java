@@ -50,6 +50,6 @@ super(wd);
   }
 
   public void confirmContactDeletion() {
-    wd.switchTo().alert().accept();
+    confirmAlert();
   }
 }
