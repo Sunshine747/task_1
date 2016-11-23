@@ -13,14 +13,21 @@ public class NavigationHelper extends BaseHelper {
   }
 
   public void goToGroupPage() {
-    click(By.linkText("groups"));
+    if (!isElementPresent(By.name("new"))) {
+      click(By.linkText("groups"));
+    }
   }
 
   public void goToAddNewContact() {
-    click(By.linkText("add new"));
+    if (!isElementPresent(By.name("submit")) && !isElementPresent(By.xpath("\"//*[@id=\\\"content\\\"]/h1\""))) {
+      click(By.linkText("add new"));
+    }
   }
 
   public void goToHomePage() {
-    click(By.xpath("//*[@id=\"nav\"]/ul/li[1]/a"));
+    if (!isElementPresent(By.xpath("//*[@id=\"content\"]/form[2]/div[1]/input"))) {
+      click(By.xpath("//*[@id=\"nav\"]/ul/li[1]/a"));
+    }
   }
 }
+//

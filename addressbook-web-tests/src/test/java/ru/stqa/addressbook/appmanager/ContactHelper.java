@@ -14,7 +14,9 @@ super(wd);
   }
 
   public void returnToHomePage() {
-    click(By.linkText("home page"));
+    if (!isElementPresent(By.xpath("//*[@id=\"content\"]/form[2]/div[1]/input"))) {
+      click(By.linkText("home page"));
+    }
   }
 
   public void submitAddNewContact() {
@@ -38,7 +40,9 @@ super(wd);
   }
 
   public void initContactModification() {
-    click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[3]/td[8]/a/img"));
+    if (!isElementPresent(By.name("update")) && !isElementPresent(By.xpath("//*[@id=\"content\"]/h1"))) {
+      click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[3]/td[8]/a/img"));
+    }
   }
 
   public void submitContactModification() {

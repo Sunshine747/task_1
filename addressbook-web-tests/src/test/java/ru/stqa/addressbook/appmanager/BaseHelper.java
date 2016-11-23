@@ -1,9 +1,6 @@
 package ru.stqa.addressbook.appmanager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 /**
  * Created by Администратор on 13.11.2016.
@@ -30,12 +27,21 @@ public class BaseHelper {
 
   }
 
-  private WebElement find(By locator) {
+  protected WebElement find(By locator) {
     return wd.findElement(locator);
   }
 
   protected void confirmAlert(){
     wd.switchTo().alert().accept();
+  }
+
+  protected boolean isElementPresent(By locator) {
+    try {
+      find(locator);
+      return true;
+    } catch (NoSuchElementException ex) {
+        return false;
+    }
   }
 
   public boolean isAlertPresent() {

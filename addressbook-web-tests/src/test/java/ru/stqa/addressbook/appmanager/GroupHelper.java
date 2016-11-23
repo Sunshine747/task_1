@@ -14,7 +14,9 @@ public class GroupHelper extends BaseHelper {
   }
 
   public void returnToGroupPage() {
-    click(By.linkText("group page"));
+    if (!isElementPresent(By.name("new"))) {
+      click(By.linkText("group page"));
+    }
   }
 
   public void submitGroupCreation() {
@@ -28,11 +30,15 @@ public class GroupHelper extends BaseHelper {
   }
 
   public void initGroupPage() {
-    click(By.name("new"));
+    if (!isElementPresent(By.name("submit"))) {
+      click(By.name("new"));
+    }
   }
 
   public void initGroupModification() {
-    click(By.name("edit"));
+    if (!isElementPresent(By.name("update"))) {
+      click(By.name("edit"));
+    }
   }
 
   public void submitGroupModification() {
