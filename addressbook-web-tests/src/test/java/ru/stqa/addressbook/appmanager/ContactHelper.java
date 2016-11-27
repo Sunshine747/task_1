@@ -41,7 +41,7 @@ super(wd);
 
   public void initContactModification() {
     if (!isElementPresent(By.name("update")) && !isElementPresent(By.xpath("//*[@id=\"content\"]/h1"))) {
-      click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[3]/td[8]/a/img"));
+      click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
     }
   }
 
@@ -55,5 +55,15 @@ super(wd);
 
   public void confirmContactDeletion() {
     confirmAlert();
+  }
+
+  public void createContact(ContactData contact) {
+    fillContactTextField(contact);
+    submitAddNewContact();
+    returnToHomePage();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
   }
 }
