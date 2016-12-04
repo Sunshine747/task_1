@@ -19,7 +19,6 @@ public class GroupModificationTest extends TestBase {
       app.getNavigationHelper().goToAddNewContact();
       app.getGroupHelper().createGroup(new GroupData("group_name", null, null));
     }
-    //int before = app.getGroupHelper().getGroupCount();
     List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGroup(before.size() - 1);
     app.getGroupHelper().initGroupModification();
@@ -28,8 +27,5 @@ public class GroupModificationTest extends TestBase {
     app.getGroupHelper().returnToGroupPage();
     List<GroupData> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals(before.size(), after.size());
-    //int after = app.getGroupHelper().getGroupCount();
-    //Assert.assertEquals(after, before);
-
   }
 }
