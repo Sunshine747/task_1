@@ -2,7 +2,12 @@ package ru.stqa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.stqa.addressbook.model.ContactData;
+import ru.stqa.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Администратор on 13.11.2016.
@@ -10,7 +15,7 @@ import ru.stqa.addressbook.model.ContactData;
 public class ContactHelper extends BaseHelper {
 
   public ContactHelper(WebDriver wd) {
-super(wd);
+    super(wd);
   }
 
   public void returnToHomePage() {
@@ -65,5 +70,21 @@ super(wd);
 
   public boolean isThereAContact() {
     return isElementPresent(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      String lastName = element.findElements(By.tagName("td")).get(1).getText();
+      String firstName = element.findElements(By.tagName("td")).get(2).getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData(null, null, null, null, null, null, null, null, null);
+      contact.setId(id);
+      contact.setFirstName(firstName);
+      contact.setLastName(lastName);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }
