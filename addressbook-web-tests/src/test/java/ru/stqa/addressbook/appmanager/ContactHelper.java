@@ -44,9 +44,9 @@ public class ContactHelper extends BaseHelper {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-  public void initContactModification() {
-    if (!isElementPresent(By.name("update")) && !isElementPresent(By.xpath("//*[@id=\"content\"]/h1"))) {
-      click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+  public void initContactModification(int id) {
+        if (!isElementPresent(By.name("update")) && !isElementPresent(By.xpath("//*[@id=\"content\"]/h1"))) {
+      wd.findElements(By.name("entry")).get(id).findElements(By.tagName("td")).get(7).findElement(By.tagName("a")).click();
     }
   }
 
