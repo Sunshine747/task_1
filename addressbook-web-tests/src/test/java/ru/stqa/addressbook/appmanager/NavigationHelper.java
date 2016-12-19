@@ -24,7 +24,7 @@ public class NavigationHelper extends BaseHelper {
     }
   }
 
-  public void goToHomePage() {
+  public void homePage() {
     if (!isElementPresent(By.xpath("//*[@id=\"content\"]/form[2]/div[1]/input"))) {
       click(By.xpath("//*[@id=\"nav\"]/ul/li[1]/a"));
     }

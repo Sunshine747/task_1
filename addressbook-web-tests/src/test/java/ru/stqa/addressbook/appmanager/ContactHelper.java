@@ -5,10 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.addressbook.model.ContactData;
 import ru.stqa.addressbook.model.Contacts;
-import ru.stqa.addressbook.model.GroupData;
-import ru.stqa.addressbook.model.Groups;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,13 +39,13 @@ public class ContactHelper extends BaseHelper {
     type(By.name("mobile"), contactData.getMobilePhoneNumber());
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
   }
 
   public void initContactModification(int id) {
-        if (!isElementPresent(By.name("update")) && !isElementPresent(By.xpath("//*[@id=\"content\"]/h1"))) {
-      wd.findElements(By.name("entry")).get(id).findElements(By.tagName("td")).get(7).findElement(By.tagName("a")).click();
+    if (!isElementPresent(By.name("update")) && !isElementPresent(By.xpath("//*[@id=\"content\"]/h1"))) {
+      wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
     }
   }
 
@@ -70,24 +67,22 @@ public class ContactHelper extends BaseHelper {
     returnToHomePage();
   }
 
-  public boolean isThereAContact() {
-    return isElementPresent(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
+  public ContactData modify(ContactData contact) {
+    initContactModification(contact.getId());
+    fillContactTextField(contact);
+    submitContactModification();
+    returnToHomePage();
+    return contact;
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.name("entry"));
-    for (WebElement element : elements) {
-      String lastName = element.findElements(By.tagName("td")).get(1).getText();
-      String firstName = element.findElements(By.tagName("td")).get(2).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData();
-      contact.withId(id);
-      contact.withFirstName(firstName);
-      contact.withLastName(lastName);
-      contacts.add(contact);
-    }
-    return contacts;
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
+    initContactDeletion();
+    confirmContactDeletion();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a/img"));
   }
 
   public Contacts all() {
@@ -101,5 +96,4 @@ public class ContactHelper extends BaseHelper {
     }
     return contacts;
   }
-
 }

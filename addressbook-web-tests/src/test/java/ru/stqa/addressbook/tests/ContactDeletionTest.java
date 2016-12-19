@@ -1,32 +1,38 @@
 package ru.stqa.addressbook.tests;
 
-import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.addressbook.model.ContactData;
+import ru.stqa.addressbook.model.Contacts;
 
-import java.util.List;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by Администратор on 13.11.2016.
  */
 public class ContactDeletionTest extends TestBase {
 
-  @Test
-  public void testContactDeletion() {
-
-    app.goTo().goToHomePage();
+  @BeforeMethod
+  public void ensurePrecondition() {
+    app.goTo().homePage();
     if (!app.contact().isThereAContact()) {
       app.goTo().addNewContact();
       app.contact().create(new ContactData().withFirstName("contact_first_name"));
     }
-    List<ContactData> before = app.contact().list();
-    app.contact().selectContact(before.size() - 1);
-    app.contact().initContactDeletion();
-    app.contact().confirmContactDeletion();
-    app.goTo().goToHomePage();
-    List<ContactData> after = app.contact().list();
-    Assert.assertEquals(after.size(), before.size() - 1);
-    before.remove(before.size() - 1);
-    Assert.assertEquals(before, after);
-    }
+  }
+
+  @Test
+  public void testContactDeletion() {
+    Contacts before = app.contact().all();
+    ContactData deletedContact = before.iterator().next();
+    app.contact().delete(deletedContact);
+    app.goTo().homePage();
+    Contacts after = app.contact().all();
+    assertThat(after.size(), equalTo(before.size() - 1));
+
+    assertThat(after, equalTo(before.without(deletedContact)));
+  }
+
+
 }
