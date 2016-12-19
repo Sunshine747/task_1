@@ -12,13 +12,13 @@ public class NavigationHelper extends BaseHelper {
     super(wd);
   }
 
-  public void goToGroupPage() {
+  public void groupPage() {
     if (!isElementPresent(By.name("new"))) {
       click(By.linkText("groups"));
     }
   }
 
-  public void goToAddNewContact() {
+  public void addNewContact() {
     if (!isElementPresent(By.name("submit")) && !isElementPresent(By.xpath("\"//*[@id=\\\"content\\\"]/h1\""))) {
       click(By.linkText("add new"));
     }
