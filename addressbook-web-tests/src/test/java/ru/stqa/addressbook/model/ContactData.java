@@ -12,6 +12,10 @@ public class ContactData {
   private String homePhoneNumber;
   private String mobilePhoneNumber;
   private String allPhones;
+  private String email1;
+  private String email2;
+  private String email3;
+  private String allEmails;
 
   public ContactData withFirstName(String firstName) {
     this.firstName = firstName;
@@ -69,6 +73,26 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withEmail1(String email1) {
+    this.email1 = email1;
+    return this;
+  }
+
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
+    return this;
+  }
+
   @Override
   public String toString() {
     return "ContactData{" +
@@ -83,30 +107,6 @@ public class ContactData {
             ", mobilePhoneNumber='" + mobilePhoneNumber + '\'' +
             ", id=" + id +
             '}';
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public String getMiddleName() {
-    return middleName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public String getNickname() {
-    return nickname;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public String getCompany() {
-    return company;
   }
 
   @Override
@@ -147,12 +147,51 @@ public class ContactData {
     return mobilePhoneNumber;
   }
 
-  public int getId() {
-    return id;
-  }
-
   public String getAllPhones() {
     return allPhones;
   }
 
+  public String getEmail1() {
+    return email1;
+  }
+
+  public String getEmail2() {
+    return email2;
+  }
+
+  public String getEmail3() {
+    return email3;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public String getMiddleName() {
+    return middleName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public String getNickname() {
+    return nickname;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public String getCompany() {
+    return company;
+  }
+
+  public int getId() {
+    return id;
+  }
 }
