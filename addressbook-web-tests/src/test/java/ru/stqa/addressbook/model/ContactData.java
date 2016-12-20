@@ -11,6 +11,7 @@ public class ContactData {
   private String address;
   private String homePhoneNumber;
   private String mobilePhoneNumber;
+  private String allPhones;
 
   public ContactData withFirstName(String firstName) {
     this.firstName = firstName;
@@ -42,27 +43,6 @@ public class ContactData {
     return this;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (id != that.id) return false;
-    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-    return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
-
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    return result;
-  }
-
   public ContactData withCompany(String company) {
 
     this.company = company;
@@ -81,6 +61,11 @@ public class ContactData {
 
   public ContactData withMobilePhoneNumber(String mobilePhoneNumber) {
     this.mobilePhoneNumber = mobilePhoneNumber;
+    return this;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
     return this;
   }
 
@@ -124,6 +109,32 @@ public class ContactData {
     return company;
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != that.id) return false;
+    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+    if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+    if (homePhoneNumber != null ? !homePhoneNumber.equals(that.homePhoneNumber) : that.homePhoneNumber != null)
+      return false;
+    return mobilePhoneNumber != null ? mobilePhoneNumber.equals(that.mobilePhoneNumber) : that.mobilePhoneNumber == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    result = 31 * result + (homePhoneNumber != null ? homePhoneNumber.hashCode() : 0);
+    result = 31 * result + (mobilePhoneNumber != null ? mobilePhoneNumber.hashCode() : 0);
+    return result;
+  }
+
   public String getAddress() {
     return address;
   }
@@ -139,4 +150,9 @@ public class ContactData {
   public int getId() {
     return id;
   }
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
 }
