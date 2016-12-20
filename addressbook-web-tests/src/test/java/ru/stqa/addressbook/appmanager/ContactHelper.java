@@ -64,6 +64,7 @@ public class ContactHelper extends BaseHelper {
   public void create(ContactData contact) {
     fillContactTextField(contact);
     submitAddNewContact();
+    contactCash = null;
     returnToHomePage();
   }
 
@@ -71,6 +72,7 @@ public class ContactHelper extends BaseHelper {
     initContactModification(contact.getId());
     fillContactTextField(contact);
     submitContactModification();
+    contactCash = null;
     returnToHomePage();
     return contact;
   }
@@ -79,6 +81,7 @@ public class ContactHelper extends BaseHelper {
     selectContactById(contact.getId());
     initContactDeletion();
     confirmContactDeletion();
+    contactCash = null;
   }
 
   public boolean isThereAContact() {
@@ -86,14 +89,20 @@ public class ContactHelper extends BaseHelper {
   }
 
   public Contacts all() {
-    Contacts contacts = new Contacts();
+    if (contactCash != null) {
+      return new Contacts(contactCash);
+    }
+    contactCash = new Contacts();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
       String lastName = element.findElements(By.tagName("td")).get(1).getText();
       String firstName = element.findElements(By.tagName("td")).get(2).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
+      contactCash.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
     }
-    return contacts;
+    return new Contacts(contactCash);
   }
+
+  private Contacts contactCash = null;
+
 }
