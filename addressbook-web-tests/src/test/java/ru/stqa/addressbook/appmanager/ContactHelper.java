@@ -103,6 +103,10 @@ public class ContactHelper extends BaseHelper {
     return new Contacts(contactCash);
   }
 
+  public int count() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
   private Contacts contactCash = null;
 
 }
