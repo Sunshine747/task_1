@@ -31,7 +31,7 @@ public class ContactHelper extends BaseHelper {
     click(By.name("submit"));
   }
 
-  public void fillContactTextField(ContactData contactData) {
+  public void fillContactForm(ContactData contactData) {
     type(By.name("firstname"), contactData.getFirstName());
     type(By.name("middlename"), contactData.getMiddleName());
     type(By.name("lastname"), contactData.getLastName());
@@ -41,6 +41,7 @@ public class ContactHelper extends BaseHelper {
     type(By.name("address"), contactData.getAddress());
     type(By.name("home"), contactData.getHomePhoneNumber());
     type(By.name("mobile"), contactData.getMobilePhoneNumber());
+    attache(By.name("photo"), contactData.getPhoto());
   }
 
   public void selectContactById(int id) {
@@ -77,7 +78,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void create(ContactData contact) {
-    fillContactTextField(contact);
+    fillContactForm(contact);
     submitAddNewContact();
     contactCash = null;
     returnToHomePage();
@@ -85,7 +86,7 @@ public class ContactHelper extends BaseHelper {
 
   public ContactData modify(ContactData contact) {
     initContactModification(contact.getId());
-    fillContactTextField(contact);
+    fillContactForm(contact);
     submitContactModification();
     contactCash = null;
     returnToHomePage();
