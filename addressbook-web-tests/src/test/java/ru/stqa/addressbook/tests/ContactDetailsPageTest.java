@@ -38,16 +38,15 @@ public class ContactDetailsPageTest extends TestBase {
 
   private String mergeInfo(ContactData contact) {
     return Arrays.asList(contact.getFirstName(), contact.getLastName(),
-            contact.getHomePhoneNumber(), contact.getMobilePhoneNumber(),
-            contact.getEmail1(), contact.getEmail2(), contact.getEmail3(),
-            contact.getAddress())
+            contact.getAddress(), contact.getHomePhoneNumber(), contact.getMobilePhoneNumber(),
+            contact.getEmail1(), contact.getEmail2(), contact.getEmail3())
             .stream().filter(s -> !s.equals(""))
-            //.map(ContactDetailsPageTest::cleaned)
+            .map(ContactDetailsPageTest::cleaned)
             .collect(Collectors.joining(""));
   }
 
-
-  public static String cleaned(String phone) {
-    return phone.replaceAll("[ \\n]", "");
+  public static String cleaned(String info) {
+    return info.replaceAll("\\n", "").replaceAll(" ", "")
+            .replaceAll("H:|M:", "");
   }
 }

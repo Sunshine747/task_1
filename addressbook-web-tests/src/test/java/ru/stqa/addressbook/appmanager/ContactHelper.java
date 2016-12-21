@@ -10,7 +10,6 @@ import ru.stqa.addressbook.tests.ContactDetailsPageTest;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -151,21 +150,21 @@ public class ContactHelper extends BaseHelper {
     wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
   }
 
-  public ContactData infoFromDetailsPage (ContactData contact) {
+  public ContactData infoFromDetailsPage(ContactData contact) {
     viewDetalPageFromContact(contact.getId());
     ContactData contactRet = new ContactData();
-    String headText = wd.findElement(By.xpath("//*[@id=\"content\"]/b")).getText();
     String bodyText = wd.findElement(By.id("content")).getText();
     List<WebElement> emailText = wd.findElements(By.xpath("a[href='mailto']"));
     List<String> emails = new ArrayList<String>();
     for (WebElement email : emailText) {
-        emails.add(email.getText());
+      emails.add(email.getText());
     }
     bodyText = bodyText.replaceAll("\n", " ");
     String t = emails.stream().map(Object::toString)
             .collect(Collectors.joining(", "));
-    String text = Arrays.asList(headText, bodyText, t)
+    String text = Arrays.asList(bodyText, t)
             .stream().filter(s -> !s.equals(""))
+            .map(ContactDetailsPageTest::cleaned)
             .collect(Collectors.joining(""));
     wd.navigate().back();
     return contactRet.withAllContact(text);
