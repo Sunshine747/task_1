@@ -33,11 +33,7 @@ public class ContactCreationTest extends TestBase {
       list.add(new Object[]{new ContactData()
               .withFirstName(split[0])
               .withLastName(split[1])
-              .withAddress(split[2])
-              .withHomePhoneNumber(split[3])
-              .withMobilePhoneNumber(split[4])
-              .withEmail1(split[5])
-              .withEmail2(split[6])});
+              .withAddress(split[2])});
       line = reader.readLine();
     }
     return list.iterator();
