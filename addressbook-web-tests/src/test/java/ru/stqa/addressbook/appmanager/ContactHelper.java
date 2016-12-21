@@ -5,8 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.addressbook.model.ContactData;
 import ru.stqa.addressbook.model.Contacts;
+import ru.stqa.addressbook.tests.ContactDetailsPageTest;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Created by Администратор on 13.11.2016.
@@ -125,7 +130,7 @@ public class ContactHelper extends BaseHelper {
 
   private Contacts contactCash = null;
 
-  public ContactData infoFromEditForm(ContactData contact) {
+  public ContactData infoFromEditContact(ContactData contact) {
     initContactModification(contact.getId());
     String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
@@ -140,5 +145,29 @@ public class ContactHelper extends BaseHelper {
             .withHomePhoneNumber(home).withMobilePhoneNumber(mobile)
             .withEmail1(email1).withEmail2(email2).withEmail3(email3)
             .withAddress(address);
+  }
+
+  public void viewDetalPageFromContact(int id) {
+    wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
+  }
+
+  public ContactData infoFromDetailsPage (ContactData contact) {
+    viewDetalPageFromContact(contact.getId());
+    ContactData contactRet = new ContactData();
+    String headText = wd.findElement(By.xpath("//*[@id=\"content\"]/b")).getText();
+    String bodyText = wd.findElement(By.id("content")).getText();
+    List<WebElement> emailText = wd.findElements(By.xpath("a[href='mailto']"));
+    List<String> emails = new ArrayList<String>();
+    for (WebElement email : emailText) {
+        emails.add(email.getText());
+    }
+    bodyText = bodyText.replaceAll("\n", " ");
+    String t = emails.stream().map(Object::toString)
+            .collect(Collectors.joining(", "));
+    String text = Arrays.asList(headText, bodyText, t)
+            .stream().filter(s -> !s.equals(""))
+            .collect(Collectors.joining(""));
+    wd.navigate().back();
+    return contactRet.withAllContact(text);
   }
 }

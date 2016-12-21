@@ -29,7 +29,7 @@ public class ContactAddressTest extends TestBase {
   public void testContactAddress() {
     app.goTo().homePage();
     ContactData contact = app.contact().all().iterator().next();
-    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
+    ContactData contactInfoFromEditForm = app.contact().infoFromEditContact(contact);
 
     assertThat(cleaned(contact.getAddress()),
             equalTo(mergeAddress(contactInfoFromEditForm)));
@@ -38,11 +38,11 @@ public class ContactAddressTest extends TestBase {
   private String mergeAddress(ContactData contact) {
     return Arrays.asList(contact.getAddress())
             .stream().filter(s -> !s.equals(""))
-            .map(ContactPhoneTest::cleaned)
+            .map(ContactAddressTest::cleaned)
             .collect(Collectors.joining(""));
   }
 
   public static String cleaned(String address) {
-    return address.replaceAll("\\n", "");
+    return address.replaceAll("\\n", "").replaceAll(" ", "");
   }
 }

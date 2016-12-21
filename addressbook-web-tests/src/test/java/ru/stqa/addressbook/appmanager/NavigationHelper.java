@@ -29,5 +29,11 @@ public class NavigationHelper extends BaseHelper {
       click(By.xpath("//*[@id=\"nav\"]/ul/li[1]/a"));
     }
   }
+
+  public void modifyPage() {
+    if (!isElementPresent(By.xpath("//*[@id=\"content\"]/form[1]/input[2]"))) {
+      click(By.xpath("//*[@id=\"content\"]/form[1]/input[2]"));
+    }
+  }
 }
 //

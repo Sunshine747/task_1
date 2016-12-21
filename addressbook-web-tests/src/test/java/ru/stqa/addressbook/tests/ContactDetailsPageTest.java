@@ -13,7 +13,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 /**
  * Created by Администратор on 20.12.2016.
  */
-public class ContactPhoneTest extends TestBase {
+public class ContactDetailsPageTest extends TestBase {
+
 
   @BeforeMethod
   public void ensurePrecondition() {
@@ -25,23 +26,28 @@ public class ContactPhoneTest extends TestBase {
   }
 
   @Test
-  public void testContactPhones() {
+  public void testContactDetailsPage() {
     app.goTo().homePage();
     ContactData contact = app.contact().all().iterator().next();
+    ContactData contactInfoFromDetailsPage = app.contact().infoFromDetailsPage(contact);
     ContactData contactInfoFromEditForm = app.contact().infoFromEditContact(contact);
 
-    assertThat(cleaned(contact.getAllPhones()),
-            equalTo(mergePhones(contactInfoFromEditForm)));
+    assertThat(contactInfoFromDetailsPage.getAllContact(),
+            equalTo((mergeInfo(contactInfoFromEditForm))));
   }
 
-  private String mergePhones(ContactData contact) {
-    return Arrays.asList(contact.getHomePhoneNumber(), contact.getMobilePhoneNumber())
+  private String mergeInfo(ContactData contact) {
+    return Arrays.asList(contact.getFirstName(), contact.getLastName(),
+            contact.getHomePhoneNumber(), contact.getMobilePhoneNumber(),
+            contact.getEmail1(), contact.getEmail2(), contact.getEmail3(),
+            contact.getAddress())
             .stream().filter(s -> !s.equals(""))
-            .map(ContactPhoneTest::cleaned)
+            //.map(ContactDetailsPageTest::cleaned)
             .collect(Collectors.joining(""));
   }
 
+
   public static String cleaned(String phone) {
-    return phone.replaceAll("\\s", "").replaceAll("[-()\\+]", "");
+    return phone.replaceAll("[ \\n]", "");
   }
 }
