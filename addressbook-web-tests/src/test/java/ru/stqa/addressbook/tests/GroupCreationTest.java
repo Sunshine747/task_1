@@ -69,7 +69,7 @@ public class GroupCreationTest extends TestBase {
             .collect(Collectors.toList()).iterator();
   }
 
-  @Test(enabled = false, dataProvider = "validGroupsFromCSV")
+  @Test(enabled = true, dataProvider = "validGroupsFromCSV")
   public void testGroupCreation(GroupData group) {
     app.goTo().groupPage();
     Groups before = app.group().all();
@@ -81,7 +81,7 @@ public class GroupCreationTest extends TestBase {
             before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
   }
 
-  @Test(enabled = true)
+  @Test(enabled = false)
   public void testBadGroupCreation() {
     app.goTo().groupPage();
     Groups before = app.group().all();

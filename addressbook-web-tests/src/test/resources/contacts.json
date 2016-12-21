@@ -2,28 +2,16 @@
   {
     "firstName": "firstname 0",
     "lastName": "lastname 0",
-    "address": "address\n0",
-    "homePhoneNumber": "homephone  0",
-    "mobilePhoneNumber": "mobilephone  0",
-    "email1": "email1  0",
-    "email2": "email2  0"
+    "address": "address\n0"
   },
   {
     "firstName": "firstname 1",
     "lastName": "lastname 1",
-    "address": "address\n1",
-    "homePhoneNumber": "homephone  1",
-    "mobilePhoneNumber": "mobilephone  1",
-    "email1": "email1  1",
-    "email2": "email2  1"
+    "address": "address\n1"
   },
   {
     "firstName": "firstname 2",
     "lastName": "lastname 2",
-    "address": "address\n2",
-    "homePhoneNumber": "homephone  2",
-    "mobilePhoneNumber": "mobilephone  2",
-    "email1": "email1  2",
-    "email2": "email2  2"
+    "address": "address\n2"
   }
 ]
