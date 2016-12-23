@@ -7,7 +7,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.addressbook.model.ContactData;
 import ru.stqa.addressbook.model.Contacts;
-import ru.stqa.addressbook.model.GroupData;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -33,7 +32,11 @@ public class ContactCreationTest extends TestBase {
         list.add(new Object[]{new ContactData()
                 .withFirstName(split[0])
                 .withLastName(split[1])
-                .withAddress(split[2])});
+                .withAddress(split[2])
+                .withHomePhoneNumber(split[3])
+                .withMobilePhoneNumber(split[4])
+                .withEmail1(split[5])
+                .withEmail2(split[6])});
         line = reader.readLine();
       }
       return list.iterator();
@@ -75,14 +78,17 @@ public class ContactCreationTest extends TestBase {
               .collect(Collectors.toList()).iterator();
     }
   }
+
   @Test(dataProvider = "validContactsFromJSON")
   public void testContactCreation(ContactData contact) {
-    Contacts before = app.contact().all();
+    app.goTo().homePage();
+    Contacts before = app.db().contacts();
     app.goTo().addNewContact();
     //File photo = new File("src/test/resources/photo.jpg");
     app.contact().create(contact);
+
+    Contacts after = app.db().contacts();
     assertThat(app.contact().count(), equalTo(before.size() + 1));
-    Contacts after = app.contact().all();
 
     assertThat(after, equalTo(
             before.withAdded(contact.withId(after.stream().mapToInt(g -> g.getId()).max().getAsInt()))));

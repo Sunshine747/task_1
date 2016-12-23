@@ -2,8 +2,6 @@ package ru.stqa.addressbook.appmanager;
 
 import org.openqa.selenium.*;
 
-import java.io.File;
-
 /**
  * Created by Администратор on 13.11.2016.
  */
@@ -24,13 +22,14 @@ public class BaseHelper {
       String existingText = find(locator).getAttribute("value");
       if (!text.equals(existingText)) {
         element.clear();
-        element.sendKeys(text);}
+        element.sendKeys(text);
       }
+    }
   }
 
-  protected void attache(By locator, File file) {
+  protected void attache(By locator, String file) {
     if (file != null) {
-        wd.findElement(locator).sendKeys(file.getAbsolutePath());
+      wd.findElement(locator).sendKeys(file);
     }
   }
 
@@ -38,7 +37,7 @@ public class BaseHelper {
     return wd.findElement(locator);
   }
 
-  protected void confirmAlert(){
+  protected void confirmAlert() {
     wd.switchTo().alert().accept();
   }
 
@@ -47,7 +46,7 @@ public class BaseHelper {
       find(locator);
       return true;
     } catch (NoSuchElementException ex) {
-        return false;
+      return false;
     }
   }
 
@@ -58,5 +57,10 @@ public class BaseHelper {
     } catch (NoAlertPresentException e) {
       return false;
     }
+  }
+
+  public void scrollUP() {
+    JavascriptExecutor js = ((JavascriptExecutor) wd);
+    js.executeScript("window.scrollBy(0,450)", "");
   }
 }

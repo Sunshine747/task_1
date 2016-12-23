@@ -2,16 +2,10 @@
   {
     "firstName": "firstname 0",
     "lastName": "lastname 0",
-    "address": "address\n0"
-  },
-  {
-    "firstName": "firstname 1",
-    "lastName": "lastname 1",
-    "address": "address\n1"
-  },
-  {
-    "firstName": "firstname 2",
-    "lastName": "lastname 2",
-    "address": "address\n2"
+    "address": "address 0",
+    "homePhoneNumber": "1-0",
+    "mobilePhoneNumber": "123--0",
+    "email1": "qwerty@0",
+    "email2": "asdfgh0"
   }
 ]

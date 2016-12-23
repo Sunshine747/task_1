@@ -16,22 +16,22 @@ public class GroupModificationTest extends TestBase {
 
   @BeforeMethod
   public void ensurePrecondition() {
-    app.goTo().groupPage();
-    if (!app.group().isThereAGroup()) {
-      app.goTo().addNewContact();
+    if (app.db().groups().size() == 0) {
+      app.goTo().groupPage();
       app.group().create(new GroupData().withName("group_name"));
     }
   }
 
   @Test
   public void testGroupModification() {
-    Groups before = app.group().all();
+    Groups before = app.db().groups();
     GroupData modifiedGroup = before.iterator().next();
     GroupData group = new GroupData()
             .withId(modifiedGroup.getId()).withName("group_name_mod").withFooter("text_group_footer_mod").withHeader("text_group_header_mod");
+    app.goTo().groupPage();
     app.group().modify(group);
     assertEquals(before.size(), app.group().count());
-    Groups after = app.group().all();
+    Groups after = app.db().groups();
 
     assertThat(after, equalTo(before.without(modifiedGroup).withAdded(group)));
   }

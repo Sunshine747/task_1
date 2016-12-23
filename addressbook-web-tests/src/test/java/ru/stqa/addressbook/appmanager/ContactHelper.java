@@ -7,6 +7,7 @@ import ru.stqa.addressbook.model.ContactData;
 import ru.stqa.addressbook.model.Contacts;
 import ru.stqa.addressbook.tests.ContactDetailsPageTest;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +29,8 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void submitAddNewContact() {
+    //if (isElementPresent(By.xpath("if (!isElementPresent(By.xpath(\"//*[@id=\\\"content\\\"]/form[2]/div[1]/input\")))"))) {
+    scrollUP();
     click(By.name("submit"));
   }
 

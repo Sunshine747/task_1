@@ -3,37 +3,84 @@ package ru.stqa.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 
 @XStreamAlias("contact")
-
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
 
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
+
   @Expose
+  @Column(name = "firstname")
   private String firstName;
+
+  @Transient
   private String middleName;
+
   @Expose
+  @Column(name = "lastname")
   private String lastName;
+
+  @Transient
   private String nickname;
+
+  @Transient
   private String title;
+
+  @Transient
   private String company;
+
   @Expose
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
+
   @Expose
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhoneNumber;
+
+  @Expose
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhoneNumber;
-  private String allPhones;
+
+
+
   @Expose
+  @Column(name = "email")
+  @Type(type = "text")
   private String email1;
+
   @Expose
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
+
+  @Transient
   private String email3;
+
+  @Transient
+  private String allPhones;
+
+  @Transient
   private String allEmails;
+
+  @Transient
   private String allContact;
-  private File photo;
+
+  @Transient
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public ContactData withFirstName(String firstName) {
     this.firstName = firstName;
@@ -116,58 +163,9 @@ public class ContactData {
     return this;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (id != that.id) return false;
-    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-    if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
-    if (address != null ? !address.equals(that.address) : that.address != null) return false;
-    if (homePhoneNumber != null ? !homePhoneNumber.equals(that.homePhoneNumber) : that.homePhoneNumber != null)
-      return false;
-    if (mobilePhoneNumber != null ? !mobilePhoneNumber.equals(that.mobilePhoneNumber) : that.mobilePhoneNumber != null)
-      return false;
-    if (email1 != null ? !email1.equals(that.email1) : that.email1 != null) return false;
-    return email2 != null ? email2.equals(that.email2) : that.email2 == null;
-
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-    result = 31 * result + (address != null ? address.hashCode() : 0);
-    result = 31 * result + (homePhoneNumber != null ? homePhoneNumber.hashCode() : 0);
-    result = 31 * result + (mobilePhoneNumber != null ? mobilePhoneNumber.hashCode() : 0);
-    result = 31 * result + (email1 != null ? email1.hashCode() : 0);
-    result = 31 * result + (email2 != null ? email2.hashCode() : 0);
-    return result;
-  }
-
-  public ContactData withPhoto(File photo) {
+  public ContactData withPhoto(String photo) {
     this.photo = photo;
     return this;
-  }
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "firstName='" + firstName + '\'' +
-            ", middleName='" + middleName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", nickname='" + nickname + '\'' +
-            ", title='" + title + '\'' +
-            ", company='" + company + '\'' +
-            ", address='" + address + '\'' +
-            ", homePhoneNumber='" + homePhoneNumber + '\'' +
-            ", mobilePhoneNumber='" + mobilePhoneNumber + '\'' +
-            ", id=" + id +
-            '}';
   }
 
   public String getAddress() {
@@ -234,7 +232,77 @@ public class ContactData {
     return allContact;
   }
 
-  public File getPhoto() {
+  public String getPhoto() {
     return photo;
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData{" +
+            "id=" + id +
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", address='" + address + '\'' +
+            ", homePhoneNumber='" + homePhoneNumber + '\'' +
+            ", mobilePhoneNumber='" + mobilePhoneNumber + '\'' +
+            ", email1='" + email1 + '\'' +
+            ", email2='" + email2 + '\'' +
+            ", email3='" + email3 + '\'' +
+            ", allPhones='" + allPhones + '\'' +
+            ", allEmails='" + allEmails + '\'' +
+            ", allContact='" + allContact + '\'' +
+            ", photo='" + photo + '\'' +
+            '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (id != that.id) return false;
+    if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
+    if (middleName != null ? !middleName.equals(that.middleName) : that.middleName != null) return false;
+    if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+    if (nickname != null ? !nickname.equals(that.nickname) : that.nickname != null) return false;
+    if (title != null ? !title.equals(that.title) : that.title != null) return false;
+    if (company != null ? !company.equals(that.company) : that.company != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (homePhoneNumber != null ? !homePhoneNumber.equals(that.homePhoneNumber) : that.homePhoneNumber != null)
+      return false;
+    if (mobilePhoneNumber != null ? !mobilePhoneNumber.equals(that.mobilePhoneNumber) : that.mobilePhoneNumber != null)
+      return false;
+    if (email1 != null ? !email1.equals(that.email1) : that.email1 != null) return false;
+    if (email2 != null ? !email2.equals(that.email2) : that.email2 != null) return false;
+    if (email3 != null ? !email3.equals(that.email3) : that.email3 != null) return false;
+    if (allPhones != null ? !allPhones.equals(that.allPhones) : that.allPhones != null) return false;
+    if (allEmails != null ? !allEmails.equals(that.allEmails) : that.allEmails != null) return false;
+    if (allContact != null ? !allContact.equals(that.allContact) : that.allContact != null) return false;
+    return photo != null ? photo.equals(that.photo) : that.photo == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id;
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+    result = 31 * result + (middleName != null ? middleName.hashCode() : 0);
+    result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+    result = 31 * result + (nickname != null ? nickname.hashCode() : 0);
+    result = 31 * result + (title != null ? title.hashCode() : 0);
+    result = 31 * result + (company != null ? company.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (homePhoneNumber != null ? homePhoneNumber.hashCode() : 0);
+    result = 31 * result + (mobilePhoneNumber != null ? mobilePhoneNumber.hashCode() : 0);
+    result = 31 * result + (email1 != null ? email1.hashCode() : 0);
+    result = 31 * result + (email2 != null ? email2.hashCode() : 0);
+    result = 31 * result + (email3 != null ? email3.hashCode() : 0);
+    result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
+    result = 31 * result + (allEmails != null ? allEmails.hashCode() : 0);
+    result = 31 * result + (allContact != null ? allContact.hashCode() : 0);
+    result = 31 * result + (photo != null ? photo.hashCode() : 0);
+    return result;
   }
 }
