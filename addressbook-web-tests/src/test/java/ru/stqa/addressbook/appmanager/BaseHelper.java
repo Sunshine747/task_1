@@ -1,6 +1,7 @@
 package ru.stqa.addressbook.appmanager;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.Select;
 
 /**
  * Created by Администратор on 13.11.2016.
@@ -25,6 +26,10 @@ public class BaseHelper {
         element.sendKeys(text);
       }
     }
+  }
+
+  protected void selectValue(By locator, String text) {
+    new Select(wd.findElement(locator)).selectByVisibleText(text);
   }
 
   protected void attache(By locator, String file) {

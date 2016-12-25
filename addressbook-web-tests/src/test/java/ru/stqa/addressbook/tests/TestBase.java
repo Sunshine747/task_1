@@ -8,9 +8,15 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.addressbook.appmanager.ApplicationManager;
+import ru.stqa.addressbook.model.GroupData;
+import ru.stqa.addressbook.model.Groups;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 /**
  * Created by Администратор on 13.11.2016.
@@ -40,6 +46,16 @@ public class TestBase {
   @AfterMethod(alwaysRun = true)
   public void logTestStop(Method m) {
     logger.info("Stop test " + m.getName());
+  }
+
+  public void verifyGroupListInUI() {
+    if (Boolean.getBoolean("verifyUI") == true){
+      Groups dbGroups = app.db().groups();
+      Groups uiGroups = app.group().all();
+      assertThat(uiGroups, equalTo(dbGroups.stream().map(s -> new GroupData()
+              .withId(s.getId()).withName(s.getName()))
+              .collect(Collectors.toSet())));
+    }
   }
 
 }

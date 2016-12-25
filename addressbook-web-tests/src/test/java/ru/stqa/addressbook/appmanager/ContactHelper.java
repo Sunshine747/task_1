@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.addressbook.model.ContactData;
 import ru.stqa.addressbook.model.Contacts;
+import ru.stqa.addressbook.model.GroupData;
+import ru.stqa.addressbook.model.Groups;
 import ru.stqa.addressbook.tests.ContactDetailsPageTest;
 
 import java.io.File;
@@ -29,7 +31,6 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void submitAddNewContact() {
-    //if (isElementPresent(By.xpath("if (!isElementPresent(By.xpath(\"//*[@id=\\\"content\\\"]/form[2]/div[1]/input\")))"))) {
     scrollUP();
     click(By.name("submit"));
   }
@@ -175,4 +176,14 @@ public class ContactHelper extends BaseHelper {
     wd.navigate().back();
     return contactRet.withAllContact(text);
   }
+
+  public void addContactToGroup(ContactData contact, GroupData group) {
+    selectContactById(contact.getId());
+    click(By.name("to_group"));
+    selectValue(By.name("to_group"), wd.findElement(By.xpath(String.format("//*[@id=\'content\']/form[2]/div[4]/select/option[@value='%d']", group.getId()))).getText());
+    click(By.name("add"));
+
+  }
+
+
 }

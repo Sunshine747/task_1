@@ -9,7 +9,6 @@ import ru.stqa.addressbook.model.ContactData;
 import ru.stqa.addressbook.model.Contacts;
 import ru.stqa.addressbook.model.GroupData;
 import ru.stqa.addressbook.model.Groups;
-
 import java.util.List;
 
 /**
@@ -43,5 +42,25 @@ public class DbHelper {
     session.getTransaction().commit();
     session.close();
     return new Contacts(result);
+  }
+
+  public Contacts contactsInAllGroups(Contacts contacts, int n) {
+    Contacts contactsRet = new Contacts();
+    for (ContactData c : contacts) {
+      if (c.getGroups().size() == n) {
+        contactsRet.add(c);
+      }
+    }
+    return contactsRet;
+  }
+
+  public Contacts contactsInNotAllGroups(Contacts contacts, int n) {
+    Contacts contactsRet = new Contacts();
+    for (ContactData c : contacts) {
+      if (c.getGroups().size() < n) {
+        contactsRet.add(c);
+      }
+    }
+    return contactsRet;
   }
 }
