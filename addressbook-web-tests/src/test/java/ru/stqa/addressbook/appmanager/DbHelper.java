@@ -63,4 +63,14 @@ public class DbHelper {
     }
     return contactsRet;
   }
+
+  public Contacts contactsInGroups(Contacts contacts) {
+    Contacts contactsRet = new Contacts();
+    for (ContactData c : contacts) {
+      if (c.getGroups().size() != 0) {
+        contactsRet.add(c);
+      }
+    }
+    return contactsRet;
+  }
 }
